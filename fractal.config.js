@@ -1,21 +1,70 @@
+'use strict';
 
-import fractal from "@frctl/fractal";
-/* Create a new Fractal instance and export it for use elsewhere if required */
-const app = fractal.create()
+// Require the path module
+const path = require('path');
 
-/* Set the title of the project */
-app.set('project.title', 'FooCorp Component Library');
+const mandelbrot = require('@frctl/mandelbrot')
 
-/* Tell Fractal where the components will live */
-app.components.set('path', '/src/components');
+const paths = {
+    docs: "src/docs",
+    static: "dist/assets",
+    components: "src/components"
+}
 
-/* Tell Fractal where the documentation pages will live */
-app.docs.set('path', '/src/docs');
+const fractalTheme = mandelbrot({
+    skin: {
+        name: "default",
+        accent: "#FCB026",
+        complement: "#000",
+        links: "#535363"
+    }
+})
 
-/* Specify a directory of static assets */
-// app.web.set('static.path', '/public');
+// Require the Fractal module
+const fractal = module.exports = require('@frctl/fractal').create();
 
-/* Set the static HTML build destination */
-app.web.set('builder.dest', '/build');
+// Give your project a title.
+fractal.set('project.title', 'Fractal Vite');
 
-module.exports = app
+// Set Fractal Theme
+fractal.web.theme(fractalTheme)
+
+// Label of the components directory
+fractal.components.set('label', 'UI Patterns')
+
+// Set Default Status
+fractal.components.set('default.status', 'prototype')
+
+// Tell Fractal where to look for components
+fractal.components.set('path', path.join(__dirname, paths.components));
+
+// Tell Fractal where to look for documentation pages
+fractal.docs.set('path', path.join(__dirname, paths.docs));
+
+// Destination for the static export
+fractal.web.set('builder.dest', 'dist/ui')
+
+// Mount point for static assets
+fractal.web.set('static.mount', 'assets')
+
+// // Tell the Fractal web preview plugin where to look for static assets
+// fractal.web.set('static.path', path.join(__dirname, 'public'));
+
+// Location of compiled assets for pattern library dev
+fractal.web.set('static.path', 'dist/assets')
+
+// Server sync settings
+
+fractal.web.set('server.sync', true)
+fractal.web.set('server.syncOptions', {
+    files: [
+        `${paths.static}/index.cjs.js`,
+        `${paths.static}/index.es.js`,
+        `${paths.static}/fractal-vite-ts.css`
+    ],
+    ui: {
+        port: 8080
+    },
+    open: true,
+    codeSync: true
+})
