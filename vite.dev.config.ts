@@ -33,10 +33,17 @@ function executePl() {
     name: "Pattern library execute",
     buildEnd: async () => {
       if (!isRunning) {
-        exec("yarn fractal:start")
-        isRunning = true
+        // exec("yarn fractal:start")
+        // setTimeout(() => {
+        //   exec("yarn fractal:start")
+        //   isRunning = true
+        // }, 1000)
       }
     }
 
   }
 }
+
+//ToDo: Add Vue/React
+//ToDo: Add production build config
+//ToDo: fix initial build issues with index.js

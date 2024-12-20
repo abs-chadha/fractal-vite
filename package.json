@@ -7,8 +7,8 @@
   "scripts": {
     "fractal:start": "fractal start --watch --sync",
     "fractal:build": "fractal build",
-    "start": "npm run build:client -- --watch",
-    "build:client": "vite build --outDir dist/assets --config vite.config.ts"
+    "dev": "npm run build:client -- --watch",
+    "build:client": "vite build --outDir dist/assets --config vite.dev.config.ts"
   },
   "devDependencies": {
     "@frctl/mandelbrot": "^1.10.3",

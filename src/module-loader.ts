@@ -9,7 +9,7 @@ function load(key: string) {
         example: async () => {
             console.log("Hello")
             const {default: example} = await import("./components/example/example.mando-ui")
-            example()
+            example();
             console.log(`${key} Loaded`)
         }
     }
