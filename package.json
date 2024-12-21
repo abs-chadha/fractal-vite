@@ -2,23 +2,27 @@
   "name": "fractal-vite-ts",
   "version": "0.1.0",
   "dependencies": {
-    "@frctl/fractal": "^1.5.15"
+    "vue": "^3.5.13"
   },
   "scripts": {
     "fractal:start": "fractal start --watch --sync",
     "fractal:build": "fractal build",
     "dev": "npm run build:dev-client -- --watch",
-    "build:dev-client": "vite build --outDir dist/assets --config vite.dev.config.ts",
+    "build:dev-client": "vite build --outDir dist/assets --config vite.dev.config.mts",
     "build": "npm run build:production",
-    "build:production": "vite build --outDir dist/assets --config vite.build.config.ts"
+    "build:production": "vite build --outDir dist/assets --config vite.build.config.mts"
   },
   "devDependencies": {
+    "@frctl/fractal": "^1.5.15",
     "@frctl/mandelbrot": "^1.10.3",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "sass": "^1.83.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.5",
+    "vite-tsconfig-paths": "^5.1.4",
     "vue-tsc": "^2.1.10"
   }
 }

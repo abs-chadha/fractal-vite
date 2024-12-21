@@ -1,7 +1,8 @@
-import {defineConfig, Plugin, loadEnv} from 'vite'
-import { exec } from 'child_process';
+import {defineConfig, loadEnv} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import autoprefixer from 'autoprefixer';
+import tsconfigPaths from "vite-tsconfig-paths";
+import {executePatternLibrary} from "./src/vite/plugins/execute-pattern-library";
 
 // https://vite.dev/config/
 
@@ -19,7 +20,8 @@ export default ({mode}) => {
     },
     plugins: [
       vue(),
-      executePl(),
+      executePatternLibrary(),
+      tsconfigPaths({loose: true})
     ],
     build: {
       minify: true,
@@ -40,17 +42,4 @@ export default ({mode}) => {
       }
     }
   })
-}
-
-function executePl(): Plugin {
-  let isRunning = false
-  // @ts-ignore
-  return {
-    name: "pattern-library-execute",
-    buildEnd: async () => {
-      if (!isRunning) {
-        exec("yarn fractal:start")
-      }
-    }
-  }
 }

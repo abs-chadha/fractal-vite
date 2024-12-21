@@ -1,6 +1,7 @@
 import {defineConfig, loadEnv} from 'vite'
 import autoprefixer from 'autoprefixer';
 import vue from '@vitejs/plugin-vue'
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
 export default ({mode}) => {
@@ -15,7 +16,10 @@ export default ({mode}) => {
         plugins: [autoprefixer()]
       }
     },
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      tsconfigPaths({loose: true})
+    ],
     build: {
       minify: true,
       lib: {

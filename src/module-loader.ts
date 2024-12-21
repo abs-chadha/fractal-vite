@@ -7,9 +7,13 @@ function camelize(text: string): string {
 function load(key: string) {
     const modules: IndexableFunc = {
         example: async () => {
-            console.log("Hello")
             const {default: example} = await import("./components/example/example.mando-ui")
             example();
+            console.log(`${key} Loaded`)
+        },
+        button: async () => {
+            const {default: button} = await import("./components/button/button.mando-vue")
+            button();
             console.log(`${key} Loaded`)
         }
     }
