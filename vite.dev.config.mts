@@ -43,3 +43,5 @@ export default ({mode}) => {
     }
   })
 }
+
+//ToDo: Look at vite build hooks, regenerate dist directory fresh. Bug to do with index not minifying

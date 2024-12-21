@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "CommonJS",
+    "module": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "moduleResolution": "Node",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "allowJs": true
   },
