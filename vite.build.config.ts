@@ -1,19 +1,20 @@
 import {defineConfig, Plugin} from 'vite'
-import { exec } from 'child_process';
+import autoprefixer from 'autoprefixer';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    executePl(),
-  ],
+  plugins: [],
+  css: {
+    postcss: {
+      plugins: [autoprefixer()]
+    }
+  },
   build: {
-    sourcemap: true,
     minify: true,
     lib: {
       entry: "./src/index.ts", // Specifies the entry point for building the library.
       name: "@mando/ui", // Sets the name of the generated library.
       fileName: () => `index.js`, // Generates the output file name based on the format.
-      // formats: ["cjs", "es"] // Specifies the output formats (CommonJS and ES modules).
     },
     rollupOptions: {
       output: {
@@ -27,19 +28,3 @@ export default defineConfig({
     }
   }
 })
-
-function executePl(): Plugin {
-  let isRunning = false
-  // @ts-ignore
-  return {
-    name: "pattern-library-execute",
-    buildEnd: async () => {
-      if (!isRunning) {
-        exec("yarn fractal:start")
-      }
-    }
-  }
-}
-
-//ToDo: Add Vue/React
-//ToDo: Add production build config

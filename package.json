@@ -7,13 +7,18 @@
   "scripts": {
     "fractal:start": "fractal start --watch --sync",
     "fractal:build": "fractal build",
-    "dev": "npm run build:client -- --watch",
-    "build:client": "vite build --outDir dist/assets --config vite.dev.config.ts"
+    "dev": "npm run build:dev-client -- --watch",
+    "build:dev-client": "vite build --outDir dist/assets --config vite.dev.config.ts",
+    "build": "npm run build:production",
+    "build:production": "vite build --outDir dist/assets --config vite.build.config.ts"
   },
   "devDependencies": {
     "@frctl/mandelbrot": "^1.10.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
     "sass": "^1.83.0",
     "typescript": "^5.7.2",
-    "vite": "^6.0.5"
+    "vite": "^6.0.5",
+    "vue-tsc": "^2.1.10"
   }
 }
