@@ -47,9 +47,6 @@ fractal.web.set('builder.dest', 'dist/ui')
 // Mount point for static assets
 fractal.web.set('static.mount', 'assets')
 
-// // Tell the Fractal web preview plugin where to look for static assets
-// fractal.web.set('static.path', path.join(__dirname, 'public'));
-
 // Location of compiled assets for pattern library dev
 fractal.web.set('static.path', 'dist/assets')
 
