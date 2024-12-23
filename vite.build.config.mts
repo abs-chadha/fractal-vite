@@ -21,20 +21,23 @@ export default ({mode}) => {
       tsconfigPaths({loose: true})
     ],
     build: {
+      emptyOutDir: true,
       minify: true,
       lib: {
         entry: "./src/index.ts", // Specifies the entry point for building the library.
-        name: "@mando/ui", // Sets the name of the generated library.
         fileName: () => `main.js`, // Generates the output file name based on the format.
+        formats: ["es"]
       },
       rollupOptions: {
         output: {
           assetFileNames: (assetInfo) => {
             if (assetInfo.name === "fractal-vite-ts.css") {
-              return "main.css"
+              return "css/index.css"
             }
             return assetInfo.name
-          }
+          },
+          chunkFileNames: "js/[name]-[hash].js",
+          entryFileNames: "js/[name].js"
         }
       }
     }

@@ -7,12 +7,12 @@ function camelize(text: string): string {
 function load(key: string) {
     const modules: IndexableFunc = {
         example: async () => {
-            const {default: example} = await import("./components/example/example.mando-ui")
+            const {default: example} = (await import("@components/example/example.mando-ui")) as ModuleType
             example();
             console.log(`${key} Loaded`)
         },
         button: async () => {
-            const {default: button} = await import("./components/button/button.mando-vue")
+            const {default: button} = (await import("@components/button/button.mando-vue")) as ModuleType
             button();
             console.log(`${key} Loaded`)
         }
@@ -59,3 +59,7 @@ function init(modules: HTMLElement[]) {
 }
 
 export default init
+
+interface ModuleType {
+    default: () => void
+}
