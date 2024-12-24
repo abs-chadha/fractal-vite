@@ -1,7 +1,9 @@
+/// <reference types="vitest" />
 import {defineConfig, loadEnv, Plugin} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import autoprefixer from 'autoprefixer';
 import tsconfigPaths from "vite-tsconfig-paths";
+import path from "path";
 import {exec} from "child_process";
 
 // https://vite.dev/config/
